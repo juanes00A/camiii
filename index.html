@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cami el amor de mi vida 💙</title>
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+padding:0;
+font-family:'Times New Roman',serif;
+background:linear-gradient(135deg,#1e3c72,#6a1b9a);
+color:white;
+overflow-x:hidden;
+}
+
+/* PANTALLAS */
+
+.screen{
+display:none;
+min-height:100vh;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px 20px;
+box-sizing:border-box;
+}
+
+.active{
+display:flex;
+}
+
+/* TEXTOS INTRO */
+
+.texto{
+opacity:0;
+transform:translateY(10px);
+animation:aparecer 1s forwards;
+}
+
+.fade1{
+animation-delay:0.5s;
+}
+
+.fade2{
+animation-delay:1.2s;
+}
+
+.fade3{
+animation-delay:1.9s;
+}
+
+@keyframes aparecer{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* CORAZONES PEQUEÑOS */
+
+.especial{
+position:relative;
+display:inline-block;
+margin:12px 0;
+}
+
+.corazon{
+position:absolute;
+top:-10px;
+right:-12px;
+width:8px;
+height:8px;
+background:#8ec5ff;
+transform:rotate(45deg);
+}
+
+.corazon::before,
+.corazon::after{
+content:"";
+position:absolute;
+width:8px;
+height:8px;
+background:#8ec5ff;
+border-radius:50%;
+}
+
+.corazon::before{
+top:-4px;
+left:0;
+}
+
+.corazon::after{
+left:-4px;
+top:0;
+}
+
+/* DISPLAY */
+
+#display{
+margin-top:20px;
+font-size:24px;
+letter-spacing:8px;
+}
+
+/* TECLADO */
+
+.keypad{
+display:grid;
+grid-template-columns:repeat(3,70px);
+gap:12px;
+margin-top:25px;
+opacity:0;
+transition:1s;
+}
+
+.mostrar{
+opacity:1;
+}
+
+.key{
+background:rgba(255,255,255,0.1);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:18px;
+padding:15px;
+font-size:20px;
+color:white;
+cursor:pointer;
+transition:0.2s;
+backdrop-filter:blur(5px);
+}
+
+.key:hover{
+background:rgba(255,255,255,0.25);
+transform:scale(1.08);
+}
+
+.key:active{
+transform:scale(0.92);
+background:rgba(255,255,255,0.35);
+}
+
+.cero{
+grid-column:2;
+}
+
+/* INTRO */
+
+.intro{
+font-size:30px;
+max-width:700px;
+line-height:1.5;
+animation:suave 2s infinite alternate;
+}
+
+@keyframes suave{
+from{
+opacity:0.7;
+}
+to{
+opacity:1;
+}
+}
+
+.heart-btn{
+margin-top:20px;
+font-size:26px;
+cursor:pointer;
+animation:latido 2s infinite;
+}
+
+@keyframes latido{
+0%,100%{
+transform:scale(1);
+}
+50%{
+transform:scale(1.15);
+}
+}
+
+/* CARTA */
+
+.notepad{
+width:100%;
+max-width:650px;
+background:rgba(255,255,255,0.08);
+padding:35px;
+border-radius:25px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+text-align:left;
+}
+
+.notepad h1{
+text-align:center;
+margin-bottom:35px;
+font-size:34px;
+}
+
+.notepad p{
+line-height:1.9;
+font-size:18px;
+margin-bottom:22px;
+}
+
+/* IMÁGENES */
+
+.img-box{
+display:flex;
+justify-content:center;
+margin:35px 0;
+}
+
+.img-box img{
+width:100%;
+max-width:280px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* FINAL */
+
+.final-btn{
+margin-top:40px;
+padding:12px 28px;
+border:none;
+border-radius:30px;
+background:rgba(255,255,255,0.15);
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.final-btn:hover{
+transform:scale(1.05);
+background:rgba(255,255,255,0.25);
+}
+
+#mensajeFinal{
+opacity:0;
+margin-top:35px;
+font-size:28px;
+text-align:center;
+transition:2s;
+line-height:1.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="musica" loop>
+<source src="https://files.catbox.moe/yb2ta6.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PANTALLA CLAVE -->
+
+<div id="passwordScreen" class="screen active">
+
+<h2 class="texto fade1 especial">
+🔒 algo especial te espera…
+<span class="corazon"></span>
+</h2>
+
+<p class="texto fade2 especial">
+Mi caleña favorita y la única dueña de mi corazón
+<span class="corazon"></span>
+</p>
+
+<p class="texto fade3 especial">
+solo tú puedes descubrirlo
+<span class="corazon"></span>
+</p>
+
+<div id="display">••••</div>
+
+<div id="keypad" class="keypad">
+
+<button class="key" onclick="add('1')">1</button>
+<button class="key" onclick="add('2')">2</button>
+<button class="key" onclick="add('3')">3</button>
+
+<button class="key" onclick="add('4')">4</button>
+<button class="key" onclick="add('5')">5</button>
+<button class="key" onclick="add('6')">6</button>
+
+<button class="key" onclick="add('7')">7</button>
+<button class="key" onclick="add('8')">8</button>
+<button class="key" onclick="add('9')">9</button>
+
+<div></div>
+<button class="key cero" onclick="add('0')">0</button>
+<div></div>
+
+</div>
+
+</div>
+
+<!-- INTRO -->
+
+<div id="introScreen" class="screen">
+
+<div class="intro">
+Mi princesa… esto siempre será para ti 💙
+</div>
+
+<div class="heart-btn" onclick="playMusic()">
+💙
+</div>
+
+</div>
+
+<!-- CARTA -->
+
+<div id="mainScreen" class="screen">
+
+<div class="notepad">
+
+<h1>EL ORIGEN DE TODO 💙</h1>
+
+<p>
+MI VIDA.
+No sé por donde empezar, por que siento que las palabras quedan cortas, pero si hay algo que tengo más que claro es que desde el día que tú llegaste a mi vida todo cambió.siento tantas cosas por ti,causas tanto en mi y te tengo una adoración tan profunda, que no es nada fácil encontrar la forma de expresar todo lo que hay en mi corazón...
+</p>
+
+<p>
+AQUEL 23 DE FEBRERO.
+El día en que todo empezó a ser felicidad y luz en mi vida y mi mundo se trasformo por completo y el inicio de nuestra Eternidad.
+</p>
+
+<div class="img-box">
+<img src="https://files.catbox.moe/fzcsl2.jpg">
+</div>
+
+<p>
+Este año ha sido el mejor por que te conocí y siempre llevaré marcado conmigo ese primer mensaje que me mandaste...
+</p>
+
+<p>
+Me detengo a pensar en el día que empezamos y me llena de una nostalgia muy hermosa...
+</p>
+
+<div class="img-box">
+<img src="https://files.catbox.moe/fpenm0.jpg">
+</div>
+
+<p>
+Juntos haremos de nuestros momentos recuerdos que jamás serán borrados...
+Tus ojitos, tus pelo,tu carita,tus cejitas,tus pestañas,tus labios y esa hermosa nariz, SIMPLEMENTE TUU✨️✨️
+</p>
+
+<div class="img-box">
+<img src="https://files.catbox.moe/nkzn1v.jpg">
+</div>
+
+<p>
+soy feliz y me emociono al escuchar audios tuyos y los audios dandome esos besitos...
+</p>
+
+<p>
+por que recuerdo como si fuera ayer ese primer audio que me volvió loquito...
+</p>
+
+<div class="img-box">
+<img src="https://files.catbox.moe/noa38s.jpg">
+</div>
+
+<p>
+Hoy igual que todos los días me pongo a pensar en ti...
+Te amoo de verdad,con todo lo que soy...
+</p>
+
+<p>
+Eres la dueña de mis suspiros,mi felicidad entera y la razón de todas mis sonrisas...
+</p>
+
+<div class="img-box">
+<img src="https://files.catbox.moe/x03act.jpg">
+</div>
+
+<p>
+Sii algún día las palabras no me alcanzan para decirte todo esto,solo quiero que recuerdes que te amoooooo con todo lo que soy...
+</p>
+
+<p>
+Teee amoo infinitamentee con toda mi alma Hoy y todos los días que vengan 💙
+</p>
+
+<button class="final-btn" onclick="mostrarFinal()">
+fin 💙
+</button>
+
+<div id="mensajeFinal">
+y si tuviera que elegir otra vez…<br>
+siempre serías tú sin dudarlo 💙
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let input="";
+const password="2340";
+let musicStarted=false;
+
+/* MOSTRAR TECLADO */
+
+setTimeout(()=>{
+document.getElementById("keypad").classList.add("mostrar");
+},2600);
+
+/* MÚSICA */
+
+function playMusic(){
+
+if(!musicStarted){
+
+document.getElementById("musica").play();
+musicStarted=true;
+
+}
+
+}
+
+/* CLAVE */
+
+function add(num){
+
+if(input.length<4){
+
+input += num;
+
+document.getElementById("display").textContent =
+input.padEnd(4,"•");
+
+}
+
+if(input.length===4){
+
+if(input===password){
+
+document.getElementById("passwordScreen")
+.classList.remove("active");
+
+document.getElementById("introScreen")
+.classList.add("active");
+
+playMusic();
+
+setTimeout(()=>{
+
+document.getElementById("introScreen")
+.classList.remove("active");
+
+document.getElementById("mainScreen")
+.classList.add("active");
+
+},3000);
+
+}else{
+
+alert("clave incorrecta 💔");
+
+input="";
+
+document.getElementById("display")
+.textContent="••••";
+
+}
+
+}
+
+}
+
+/* FINAL */
+
+function mostrarFinal(){
+
+document.getElementById("mensajeFinal")
+.style.opacity="1";
+
+}
+
+</script>
+
+</body>
+</html>
